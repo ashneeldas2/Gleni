@@ -1,2 +1,8 @@
 # .gitignore for files from the header
+
+# Files
 .DS_Store
+package-lock.json
+
+# Packages
+node_modules
