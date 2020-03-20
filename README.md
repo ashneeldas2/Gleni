@@ -1,5 +1,4 @@
-# Gleni
-Quick Reach & Express Setup by Traversy Media
+# Gleni (for application reviews)
 
 ## Quick Start
 
