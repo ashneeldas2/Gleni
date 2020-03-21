@@ -24,4 +24,4 @@ const headStyle = {
     justifyContent: 'center'
 };
 
-export default Head;
+export default Head
