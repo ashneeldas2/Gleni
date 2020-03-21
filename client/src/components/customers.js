@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './customers.css';
 
 class Customers extends Component {
   constructor() {
@@ -18,15 +17,27 @@ class Customers extends Component {
   render() {
     return (
       <div>
-        <h2>Customers</h2>
-        <ul>
+        <ul style={customersContainer}>
         {this.state.customers.map(customer => 
-          <li key={customer.id}>{customer.firstName} {customer.lastName}</li>
+          <li key={customer.id} style={listStyle}>{customer.firstName} {customer.lastName}</li>
         )}
         </ul>
       </div>
     );
   }
+}
+
+const customersContainer = {
+  padding: '0',
+  listStyle: 'none',
+  width: '30%',
+  margin: 'auto'
+}
+
+const listStyle = {
+  fontSize: '1.2rem',
+  lineHeight: '2rem',
+  borderBottom: '1px dotted #777'
 }
 
 export default Customers;
