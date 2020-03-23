@@ -24,8 +24,8 @@ const headStyle = {
     backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: '5',
-    boxShadow: '0 1px 4px #32DE8A'
+    zIndex: '1',
+    boxShadow: '0 1px 15px #5AB378'
 };
 
 export default Head
