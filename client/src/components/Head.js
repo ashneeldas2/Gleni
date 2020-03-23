@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 export class Head extends Component {
     render() {
         return (
-            <div style={headStyle}>
+            <nav class="navbar fixed-top navbar-expand-lg p-0">
+                <div style={headStyle}>
                 <svg height = "50%"
                 viewBox = "0 0 263 95"
                 fill = "none">
@@ -11,17 +12,20 @@ export class Head extends Component {
                     <path d = "M252.6 28.6H233.5V40H240.4V70.6H233.4V82H259.5V70.6H252.6V28.6ZM252.6 10.6H240.4V23.5H252.6V10.6Z" fill = "#32DE8A" />
                 </svg>
             </div>
+            </nav>
         )
     }
 }
 
 const headStyle = {
-    width: '100%',
-    height: '62px',
-    backgroundColor: '#FFF',
     display: 'flex',
+    width: '100%',
+    height: '54px',
+    backgroundColor: '#FFF',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    zIndex: '5',
+    boxShadow: '0 1px 4px #32DE8A'
 };
 
 export default Head
