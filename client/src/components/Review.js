@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './Review.css';
-import Response from './Response';
-import Resume from './Resume'
+import Responses from './Responses';
+import Resume from './Resume';
+import Scores from './Scores'
 
 export class Review extends Component {
 
@@ -20,24 +21,32 @@ export class Review extends Component {
         const { currentStage } = this.state;
         const stagesDictionary = {
             responses: {
-                component: <Response />,
+                component: <Responses />,
+                displayNotes: true,
                 submitText: 'Next Stage (Resume)',
                 nextStage: 'resume'
             },
             resume: {
                 component: <Resume />,
+                displayNotes: true,
                 submitText: 'Next Stage (Scores)',
                 nextStage: 'scores'
             },
             scores: {
+                component: <Scores />,
                 submitText: 'Submit Scores',
+                displayNotes: false,
                 // TO BE CHANGED
                 nextStage: 'responses'
             }
         }
 
+        // Extract all information of current stage for building component
         const currentStageInfo = stagesDictionary[currentStage];
-        const { component, submitText, nextStage } = currentStageInfo;
+        const { component, submitText, nextStage, displayNotes } = currentStageInfo;
+
+        // Conditional notes section for stages needing final notes
+        const notesComponent = displayNotes ? <input className="notes" type="text" placeholder="Notes" /> : '';
 
         return (
             <div className="card">
@@ -55,7 +64,7 @@ export class Review extends Component {
                     </ul>
                 </div>
                 { component }
-                    <input className="notes" type="text" placeholder="Notes" />
+                    { notesComponent }
                     <div className="card-footer footer" onClick={() => this.changeStage(nextStage)}> { submitText } </div>
                 </div>
         )

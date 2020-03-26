@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Review.css';
 
-export class Response extends Component {
+export class Responses extends Component {
     render() {
         return (
             <div className="card-body">
@@ -34,4 +34,4 @@ export class Response extends Component {
     }
 }
 
-export default Response
+export default Responses
