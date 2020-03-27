@@ -8,7 +8,7 @@ import Review from './components/Review';
 
 // Antd imports
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { DashboardOutlined, SettingOutlined, FileTextOutlined } from '@ant-design/icons';
+import { DashboardOutlined, FileTextOutlined } from '@ant-design/icons';
 
 // Antd simplifications
 const { Header, Content, Footer } = Layout;
@@ -35,7 +35,7 @@ class App extends Component {
         theme="dark"
         mode="horizontal"
         defaultSelectedKeys={['2']}>
-        <Menu.Item key="1">Gleni</Menu.Item>
+        <Menu.Item key="1">Project Gleni</Menu.Item>
       </Menu>
     </Header>
     <Content style={{ padding: '0 50px' }}>
@@ -58,10 +58,6 @@ class App extends Component {
           <Menu.Item key="application:overview">Overview</Menu.Item>
           <Menu.Item key="application:review">Review</Menu.Item>
         </SubMenu>
-        <Menu.Item key="setting">
-          <SettingOutlined />
-          Settings
-        </Menu.Item>
       </Menu>
       <Review />
       </div>
