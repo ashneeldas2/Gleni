@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-// Import Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
+// Import AntD
+import 'antd/dist/antd.css';
 
-// Import index CSS to override Bootstrap
+// Import index CSS
 import './index.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
