@@ -3,23 +3,26 @@ import { Steps } from 'antd';
 
 // Components
 import Responses from './Review/Responses';
+import Resume from './Review/Resume';
+import Finalize from './Review/Finalize';
 
 export class Review extends Component {
 
     state = { currentStep: 'Responses' };
 
-    handleFinishStep = (stage) => {
+    handleFinishStep = (step) => {
 
+        // Identify the next step to move to with switch statements
         let nextStep;
 
-        switch (stage) {
+        switch (step) {
             case 'Responses':
                 nextStep = 'Resume';
                 break;
             case 'Resume':
-                nextStep = 'Review';
+                nextStep = 'Finalize';
                 break;
-            case 'Review':
+            case 'Finalize':
                 break;
         }
 
@@ -31,24 +34,28 @@ export class Review extends Component {
 
         const stepsList = [
             {
-                title: 'Responses'
+                title: 'Responses',
+                component: <Responses onFinishStep={this.handleFinishStep} />
             },
             {
-                title: 'Resume'
+                title: 'Resume',
+                component: <Resume onFinishStep={this.handleFinishStep} />
             },
             {
-                title: 'Review'
+                title: 'Finalize',
+                component: <Finalize onFinishStep={this.handleFinishStep} />
             }
         ];
 
         const currentStepIndex = stepsList.findIndex((step) => step.title === this.state.currentStep);
+        const currentStepComponent = stepsList[currentStepIndex].component;
 
         return (
             <div style={{ marginTop: '8px', padding: '16px' }}>
                 <Steps current={currentStepIndex}>
                     { stepsList.map((step, i) => <Step title={step.title} key={i}></Step>) }
                 </Steps>
-                <Responses onFinishStep={this.handleFinishStep} />
+                { currentStepComponent }
             </div>
         )
     }
