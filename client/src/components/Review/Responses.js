@@ -67,6 +67,14 @@ const data = [
 ];
 
 export class Responses extends Component {
+
+    onFinish = (values) => {
+        // Do something with the values
+        // console.log(values)
+
+        this.props.onFinishStep('Responses');
+    }
+
     render() {
         return (
             <div>
@@ -85,7 +93,10 @@ export class Responses extends Component {
 
             <Divider />
 
-            <Form>
+            <Form
+                name="responsesReview"
+                onFinish={this.onFinish}
+            >
                 <Form.Item
                     label="Notes"
                     name="notes"

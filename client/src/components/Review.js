@@ -8,6 +8,24 @@ export class Review extends Component {
 
     state = { currentStep: 'Responses' };
 
+    handleFinishStep = (stage) => {
+
+        let nextStep;
+
+        switch (stage) {
+            case 'Responses':
+                nextStep = 'Resume';
+                break;
+            case 'Resume':
+                nextStep = 'Review';
+                break;
+            case 'Review':
+                break;
+        }
+
+        if (nextStep !== undefined) this.setState({currentStep: nextStep})
+    }
+
     render() {
         const { Step } = Steps;
 
@@ -30,7 +48,7 @@ export class Review extends Component {
                 <Steps current={currentStepIndex}>
                     { stepsList.map((step, i) => <Step title={step.title} key={i}></Step>) }
                 </Steps>
-                <Responses />
+                <Responses onFinishStep={this.handleFinishStep} />
             </div>
         )
     }
