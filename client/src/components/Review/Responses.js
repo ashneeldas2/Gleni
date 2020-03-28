@@ -14,11 +14,11 @@ const data = [
   },
   {
     question: 'First Name',
-    response: 'Scott'
+    response: 'Karen'
   },
   {
     question: 'Last Name',
-    response: 'Wang'
+    response: 'Philips'
   },
   {
     question: 'What is your expected graduation date?',
