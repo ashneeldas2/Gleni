@@ -21,26 +21,20 @@ export class Finalize extends Component {
 
     render() {
         const decisionMenu = (
-            <Menu>
-              <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer">
-                  No
-                </a>
+            <Menu onClick={({ key }) => this.props.onChangeDecision(key)}>
+              <Menu.Item key="Yes">
+                Yes
               </Menu.Item>
-              <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer">
-                  Maybe
-                </a>
+              <Menu.Item key="Maybe">
+                Maybe
               </Menu.Item>
-              <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer">
-                  Yes
-                </a>
+              <Menu.Item key="No">
+                No
               </Menu.Item>
             </Menu>
           );
 
-        const { responses, resume } = this.props.evaluation;
+        const { responses, resume, finalize } = this.props.evaluation;
 
         return (
             <div style={{marginTop: '16px'}}>
@@ -66,7 +60,7 @@ export class Finalize extends Component {
                         name="responsesNotes"
                         rules={[{ required: true, message: 'Review notes are required' }]}
                     >
-                        <Paragraph copyable style={{ marginBottom: '0' }}>{ responses.notes }</Paragraph>
+                        <Paragraph style={{ marginBottom: '0' }}>{ responses.notes }</Paragraph>
                     </Form.Item>
                     <Form.Item
                         label="Rating"
@@ -81,7 +75,7 @@ export class Finalize extends Component {
                         name="resumeNotes"
                         rules={[{ required: true, message: 'Review notes are required' }]}
                     >
-                        <Paragraph copyable style={{ marginBottom: '0' }}>{ resume.notes }</Paragraph>
+                        <Paragraph style={{ marginBottom: '0' }}>{ resume.notes }</Paragraph>
                     </Form.Item>
                     <Form.Item
                         label="Rating"
@@ -98,7 +92,7 @@ export class Finalize extends Component {
                     >
                     <Dropdown overlay={decisionMenu}>
                         <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                        <Button>Decision</Button>
+                        <Button>{ finalize.decision }</Button>
                         </a>
                     </Dropdown>
                     </Form.Item>

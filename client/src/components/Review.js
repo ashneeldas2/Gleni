@@ -8,8 +8,9 @@ import Finalize from './Review/Finalize';
 
 export class Review extends Component {
 
+    // Default scoring values
     state = { 
-        currentStep: 'responses',
+        currentStep: 'finalize',
         evaluation: {
             responses: {
                 notes: '',
@@ -20,7 +21,7 @@ export class Review extends Component {
                 rating: null
             },
             finalize: {
-                decision: ''
+                decision: 'Decision'
             }
         },
     };
@@ -30,6 +31,13 @@ export class Review extends Component {
         
         // Update with new valuation
         updatedEvaluation[step][scoringSection] = newValue;
+        this.setState({evaluation: updatedEvaluation});
+    }
+
+    handleChangeDecision = (decision) => {
+        const updatedEvaluation = this.state.evaluation;
+
+        updatedEvaluation.finalize.decision = decision;
         this.setState({evaluation: updatedEvaluation});
     }
 
@@ -83,7 +91,9 @@ export class Review extends Component {
                 component: <Finalize
                     // Need entire evaluation
                     evaluation={evaluation}
-                    onFinishStep={this.handleFinishStep}    
+                    onEvaluationChange={this.handleEvaluationChange}
+                    onChangeDecision={this.handleChangeDecision}
+                    onFinishStep={this.handleFinishStep}
                 />
             }
         ];
