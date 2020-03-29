@@ -68,11 +68,29 @@ const data = [
 
 export class Responses extends Component {
 
+    formRef = React.createRef();
+    
+    componentDidMount() {
+        const { notes, rating } = this.props.responsesScoring;
+
+        this.formRef.current.setFieldsValue({
+            notes, rating
+        })
+    }
+
+    onNotesChange = (newNotesValue) => {
+        this.props.onEvaluationChange('responses', 'notes', newNotesValue);
+    }
+
+    onRatingChange = (newRatingValue) => {
+        this.props.onEvaluationChange('responses', 'rating', newRatingValue);
+    }
+    
     onFinish = (values) => {
         // Do something with the values
         // console.log(values)
 
-        this.props.onFinishStep('Responses');
+        this.props.onFinishStep('responses');
     }
 
     render() {
@@ -94,6 +112,7 @@ export class Responses extends Component {
             <Divider />
 
             <Form
+                ref={this.formRef}
                 name="responsesReview"
                 onFinish={this.onFinish}
             >
@@ -104,6 +123,7 @@ export class Responses extends Component {
                 >
                     <Input
                         placeholder="Thoughts on responses"
+                        onChange={e => this.onNotesChange(e.target.value)}
                     />
                 </Form.Item>
                 <Form.Item
@@ -111,7 +131,9 @@ export class Responses extends Component {
                     name="rating"
                     rules={[{ required: true, message: 'Ratings are required' }]}
                 >
-                    <Rate />
+                    <Rate 
+                        onChange={this.onRatingChange}
+                    />
                 </Form.Item>
                 <Form.Item>
                 <Button type="primary" htmlType="submit">

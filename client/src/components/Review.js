@@ -8,21 +8,44 @@ import Finalize from './Review/Finalize';
 
 export class Review extends Component {
 
-    state = { currentStep: 'Responses' };
+    state = { 
+        currentStep: 'responses',
+        evaluation: {
+            responses: {
+                notes: '',
+                rating: null
+            },
+            resume: {
+                notes: '',
+                rating: null
+            },
+            finalize: {
+                decision: ''
+            }
+        },
+    };
 
+    handleEvaluationChange = (step, scoringSection, newValue) => {
+        const updatedEvaluation = this.state.evaluation;
+        
+        // Update with new valuation
+        updatedEvaluation[step][scoringSection] = newValue;
+        this.setState({evaluation: updatedEvaluation});
+    }
+
+    // TBD: Improve operation, efficiency and maintability of this function
     handleFinishStep = (step) => {
-
         // Identify the next step to move to with switch statements
         let nextStep;
 
         switch (step) {
-            case 'Responses':
-                nextStep = 'Resume';
+            case 'responses':
+                nextStep = 'resume';
                 break;
-            case 'Resume':
-                nextStep = 'Finalize';
+            case 'resume':
+                nextStep = 'finalize';
                 break;
-            case 'Finalize':
+            case 'finalize':
                 break;
         }
 
@@ -32,22 +55,40 @@ export class Review extends Component {
     render() {
         const { Step } = Steps;
 
+        const { evaluation } = this.state;
+        const { responses, resume } = evaluation;
+
         const stepsList = [
             {
+                id: 'responses',
                 title: 'Responses',
-                component: <Responses onFinishStep={this.handleFinishStep} />
+                component: <Responses 
+                    responsesScoring={responses}
+                    onEvaluationChange={this.handleEvaluationChange}
+                    onFinishStep={this.handleFinishStep} 
+                />
             },
             {
+                id: 'resume',
                 title: 'Resume',
-                component: <Resume onFinishStep={this.handleFinishStep} />
+                component: <Resume 
+                    resumeScoring={resume}
+                    onEvaluationChange={this.handleEvaluationChange}
+                    onFinishStep={this.handleFinishStep}
+                />
             },
             {
+                id: 'finalize',
                 title: 'Finalize',
-                component: <Finalize onFinishStep={this.handleFinishStep} />
+                component: <Finalize
+                    // Need entire evaluation
+                    evaluation={evaluation}
+                    onFinishStep={this.handleFinishStep}    
+                />
             }
         ];
 
-        const currentStepIndex = stepsList.findIndex((step) => step.title === this.state.currentStep);
+        const currentStepIndex = stepsList.findIndex((step) => step.id === this.state.currentStep);
         const currentStepComponent = stepsList[currentStepIndex].component;
 
         return (

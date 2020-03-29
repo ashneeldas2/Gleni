@@ -9,11 +9,29 @@ const data = {
 
 export class Resume extends Component {
 
+    formRef = React.createRef();
+    
+    componentDidMount() {
+        const { notes, rating } = this.props.resumeScoring;
+
+        this.formRef.current.setFieldsValue({
+            notes, rating
+        })
+    }
+
+    onNotesChange = (newNotesValue) => {
+        this.props.onEvaluationChange('resume', 'notes', newNotesValue);
+    }
+
+    onRatingChange = (newRatingValue) => {
+        this.props.onEvaluationChange('resume', 'rating', newRatingValue);
+    }
+
     onFinish = (values) => {
         // Do something with the values
         // console.log(values)
 
-        this.props.onFinishStep('Resume');
+        this.props.onFinishStep('resume');
     }
 
     render() {
@@ -23,6 +41,7 @@ export class Resume extends Component {
                 <Divider />
 
             <Form
+                ref={this.formRef}
                 name="responsesReview"
                 onFinish={this.onFinish}
             >
@@ -33,6 +52,7 @@ export class Resume extends Component {
                 >
                     <Input
                         placeholder="Thoughts on resume"
+                        onChange={e => this.onNotesChange(e.target.value)}
                     />
                 </Form.Item>
                 <Form.Item
@@ -40,7 +60,9 @@ export class Resume extends Component {
                     name="rating"
                     rules={[{ required: true, message: 'Ratings are required' }]}
                 >
-                    <Rate />
+                    <Rate 
+                        onChange={this.onRatingChange}
+                    />
                 </Form.Item>
                 <Form.Item>
                 <Button type="primary" htmlType="submit">
