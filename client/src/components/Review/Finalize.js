@@ -88,7 +88,7 @@ export class Finalize extends Component {
                     <Form.Item
                         label="Should we give this applicant an interview?"
                         name="finalDecision"
-                        rules={[{ required: true, message: 'Final decision is required' }]}
+                        rules={[{ required: finalize.decision === 'Decision', message: 'Final decision is required' }]}
                     >
                     <Dropdown overlay={decisionMenu}>
                         <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>

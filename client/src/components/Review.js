@@ -10,7 +10,7 @@ export class Review extends Component {
 
     // Default scoring values
     state = { 
-        currentStep: 'finalize',
+        currentStep: 'responses',
         evaluation: {
             responses: {
                 notes: '',
