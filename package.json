@@ -13,11 +13,15 @@
   "author": "Han Wang & Ashneel Das",
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "^1.14.6"
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "nodemon": "^1.14.6",
+    "prettier": "^2.0.2"
   },
   "dependencies": {
     "concurrently": "^3.5.1",
     "express": "^4.16.2",
+    "googleapis": "^39.2.0",
     "react-rating": "^2.0.5"
   }
 }

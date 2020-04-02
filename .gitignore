@@ -6,3 +6,6 @@ package-lock.json
 
 # Packages
 node_modules
+
+# Sheets API credentials
+credentials.json
