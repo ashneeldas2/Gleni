@@ -2,11 +2,12 @@ name: Build
 on: pull_request
 
 jobs:
-  test_pull_request:
+  Build files on client:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - run: cd client
       - run: npm ci
       - run: npm run build
