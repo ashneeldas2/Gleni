@@ -5,20 +5,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      working-directory: ./client
-
     steps:
       - name: Setup Node.js 12
         uses: actions/setup-node@v1
         with:
           node-version: 12
-        working-directory: ${{env.working-directory}}
 
       - name: Install frontend dependencies
         run: npm install
-        working-directory: ${{env.working-directory}}
+        working-directory: ./client
 
       - name: Run build
         run: npm run build
-        working-directory: ${{env.working-directory}}
+        working-directory: ./client
