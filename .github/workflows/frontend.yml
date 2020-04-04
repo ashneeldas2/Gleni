@@ -12,9 +12,7 @@ jobs:
           node-version: 12
 
       - name: Install frontend dependencies
-        run: npm install
-        working-directory: client
+        run: cd client && npm install
 
       - name: Run build
-        run: npm run build
-        working-directory: client
+        run: cd client && npm run build
