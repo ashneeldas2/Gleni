@@ -13,8 +13,8 @@ jobs:
 
       - name: Install frontend dependencies
         run: npm install
-        working-directory: ./client
+        working-directory: client
 
       - name: Run build
         run: npm run build
-        working-directory: ./client
+        working-directory: client
