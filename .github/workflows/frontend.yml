@@ -2,8 +2,12 @@ name: Frontend
 on: pull_request
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
+
+    env:
+      working-directory: ./client
+
     steps:
       - name: Setup Node.js 12
         uses: actions/setup-node@v1
@@ -11,9 +15,9 @@ jobs:
           node-version: 12
 
       - name: Install frontend dependencies
-        working-directory: ./client
         run: npm install
+        working-directory: ${{env.working-directory}}
 
       - name: Run build
-        working-directory: ./client
         run: npm run build
+        working-directory: ${{env.working-directory}}
