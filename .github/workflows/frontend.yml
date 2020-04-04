@@ -16,7 +16,6 @@ jobs:
 
       - name: Install frontend dependencies
         run: npm install
-        working-directory: ${{env.working-directory}}
 
       - name: Run build
         run: npm run build
