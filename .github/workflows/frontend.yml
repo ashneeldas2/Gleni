@@ -1,0 +1,21 @@
+name: Frontend
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install frontend dependencies
+        run: npm install
+        working-directory: ./client
+
+      - name: Run build
+        run: npm run build
+        working-directory: ./client
